@@ -15,7 +15,7 @@ function App() {
     setWritingType(type);
     
     try {
-      const response = await axios.post("http://127.0.0.1:5000/generate", { prompt, type });
+      const response = await axios.post("https://storybot-genai-1.onrender.com/generate", { prompt, type });
       if (type === "story") {
         setStory(response.data.story);
         setPoem(""); // Clear poem if a story is generated
