@@ -1,0 +1,5 @@
+services:
+  - name: my-backend-service
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
