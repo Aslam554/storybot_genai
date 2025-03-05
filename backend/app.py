@@ -1,10 +1,22 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import google.generativeai as genai
+from dotenv import load_dotenv
+import os
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
-genai.configure(api_key="AIzaSyB3P1bfWkM8Pku0QOObHUqL0GgV_ETqt_M")
+
+# Get API key from environment variables
+api_key = os.getenv("GEMINI_API_KEY")
+
+if not api_key:
+    raise ValueError("GEMINI_API_KEY not found. Please set it in the .env file.")
+
+genai.configure(api_key=api_key)
 
 @app.route('/generate', methods=['POST'])
 def generate_content():
